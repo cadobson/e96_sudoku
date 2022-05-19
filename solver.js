@@ -50,4 +50,13 @@ function containsContradictions(arr) {}
  */
 function isCompletelySolved() {}
 
+/**
+ * Takes in an array, where the zeroes represent the unknown
+ * squares. For every unknown square, it will recursively attempt
+ * all values for that square. If a choice causes a contradiction, we exit out and
+ */
+function recursiveSolve(arr, posArr) {
+  return arr;
+}
+
 console.log(getOneGrid());
