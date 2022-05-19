@@ -7,6 +7,28 @@
 function getOneGrid() {
   let arr = [];
 
+  //read the file into a string
+  // get filesystem module
+  const fs = require("fs");
+  // using the readFileSync() function
+  // and passing the path to the file
+  const buffer = fs.readFileSync("p096_sudoku.txt");
+  let fileContent = buffer.toString().split("");
+
+  fileContent.splice(0, 8);
+
+  for (let i = 0; i < 9; i++) {
+    //put the first 9 elements into an array
+    let thisRow = [];
+    for (let j = 0; j < 9; j++) {
+      thisRow.push(fileContent.shift());
+    }
+    arr.push(thisRow);
+
+    //trim the \n at the end of each line
+    fileContent.shift();
+  }
+
   return arr;
 }
 
