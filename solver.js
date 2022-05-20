@@ -45,10 +45,30 @@ function containsContradictions(arr) {}
 
 /**
  * Determines if the grid is complete.
+ * //Completeness requires:
+ * 1: All rows only have one of each number
+ * 2: All cols only have one of each number
+ * 3: All boxes only have one of each number
  * @param {Array} arr
  * @returns {boolean} if the grid is complete
  */
-function isCompletelySolved() {}
+function isCompletelySolved(arr) {
+  //first, do a quick checksum
+  let checksum = 0;
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      //if any elements are zero, then the grid is incompletes
+      if (arr[i][j] == 0) {
+        return false;
+      }
+      checksum += arr[i][j];
+    }
+  }
+  if (checksum != 405) {
+    return false;
+  }
+  //passing the checksum is NOT a guarentee that the grid is complete
+}
 
 /**
  * Takes in an array, where the zeroes represent the unknown
@@ -60,3 +80,5 @@ function recursiveSolve(arr, posArr) {
 }
 
 console.log(getOneGrid());
+
+// Exports for mocha tests below this line
