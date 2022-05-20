@@ -56,6 +56,7 @@ let containsContradictions = function (arr) {
  */
 let isCompletelySolved = function (arr) {
   //first, do a quick checksum
+  //passing the checksum is NOT a guarentee that the grid is complete
   let checksum = 0;
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
@@ -69,7 +70,16 @@ let isCompletelySolved = function (arr) {
   if (checksum != 405) {
     return false;
   }
-  //passing the checksum is NOT a guarentee that the grid is complete
+
+  //Check if the rows are complete
+
+  //Check is the cols are complete
+
+  //Check if the boxes are complete
+
+  //If we pass all tests without failure, then return true.
+  //Until the above are properly implemented, return null
+  return null;
 };
 
 /**
@@ -85,8 +95,8 @@ console.log(getOneGrid());
 
 // Exports for mocha tests below this line
 module.exports = {
-  getOneGrid: getOneGrid,
-  containsContradictions: containsContradictions,
-  isCompletelySolved: isCompletelySolved,
-  recursiveSolve: recursiveSolve,
+  getOneGrid,
+  containsContradictions,
+  isCompletelySolved,
+  recursiveSolve,
 };
