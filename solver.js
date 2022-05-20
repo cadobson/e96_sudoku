@@ -4,7 +4,7 @@
  * Planned: get the next unsolved grid
  * @returns {Array} The first grid in the text file.
  */
-function getOneGrid() {
+let getOneGrid = function () {
   let arr = [];
 
   //read the file into a string
@@ -30,7 +30,7 @@ function getOneGrid() {
   }
 
   return arr;
-}
+};
 
 /**
  * Determines if the provided grid contains contradictions. A contradiction is
@@ -41,7 +41,9 @@ function getOneGrid() {
  * @param {Array} arr
  * @returns {boolean} whether the grid contains any contradictions
  */
-function containsContradictions(arr) {}
+let containsContradictions = function (arr) {
+  return null;
+};
 
 /**
  * Determines if the grid is complete.
@@ -52,7 +54,7 @@ function containsContradictions(arr) {}
  * @param {Array} arr
  * @returns {boolean} if the grid is complete
  */
-function isCompletelySolved(arr) {
+let isCompletelySolved = function (arr) {
   //first, do a quick checksum
   let checksum = 0;
   for (let i = 0; i < 9; i++) {
@@ -68,17 +70,23 @@ function isCompletelySolved(arr) {
     return false;
   }
   //passing the checksum is NOT a guarentee that the grid is complete
-}
+};
 
 /**
  * Takes in an array, where the zeroes represent the unknown
  * squares. For every unknown square, it will recursively attempt
  * all values for that square. If a choice causes a contradiction, we exit out and
  */
-function recursiveSolve(arr, posArr) {
+let recursiveSolve = function (arr, posArr) {
   return arr;
-}
+};
 
 console.log(getOneGrid());
 
 // Exports for mocha tests below this line
+module.exports = {
+  getOneGrid: getOneGrid,
+  containsContradictions: containsContradictions,
+  isCompletelySolved: isCompletelySolved,
+  recursiveSolve: recursiveSolve,
+};
