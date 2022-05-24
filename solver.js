@@ -94,6 +94,7 @@ let recursiveSolve = function (arr, posArr) {
 console.log(getOneGrid());
 
 // Exports for mocha tests below this line
+// TODO: Something about this is broken
 module.exports = {
   getOneGrid,
   containsContradictions,
