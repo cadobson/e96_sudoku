@@ -91,7 +91,7 @@ let recursiveSolve = function (arr, posArr) {
   return arr;
 };
 
-console.log(getOneGrid());
+//console.log(getOneGrid());
 
 // Exports for mocha tests below this line
 // TODO: Something about this is broken

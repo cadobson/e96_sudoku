@@ -1,6 +1,7 @@
 const assert = require("assert");
 
-const getOneGrid = require("../solver.js");
+const getOneGrid = require("../solver.js").getOneGrid;
+//var test = require('path_to_file').testOne:
 
 describe("getOneGrid()", function () {
   it("should get the first grid from the text file", function () {
@@ -15,6 +16,6 @@ describe("getOneGrid()", function () {
       ["8", "0", "0", "2", "0", "3", "0", "0", "9"],
       ["0", "0", "5", "0", "1", "0", "3", "0", "0"],
     ];
-    assert.strictEqual(getOneGrid(), firstGrid);
+    assert.deepEqual(getOneGrid(), firstGrid);
   });
 });
