@@ -64,7 +64,7 @@ let isCompletelySolved = function (arr) {
       if (arr[i][j] == 0) {
         return false;
       }
-      checksum += arr[i][j];
+      checksum += parseInt(arr[i][j]);
     }
   }
   if (checksum != 405) {
@@ -79,7 +79,7 @@ let isCompletelySolved = function (arr) {
 
   //If we pass all tests without failure, then return true.
   //Until the above are properly implemented, return null
-  return null;
+  return true;
 };
 
 /**
