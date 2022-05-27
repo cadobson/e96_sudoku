@@ -116,10 +116,41 @@ let isCompletelySolved = function (arr) {
   }
 
   //Check if the boxes are complete
+  //since the boxes aren't easily reducable with for loops
+  //like the cols and rows, this looks much sloppier.
+
+  for (let i = 0; i < 3; i++) {
+    //This represents the 3x3 box-of-boxes.
+    for (let j = 0; j < 3; j++) {
+      let currentBox = [];
+      for (let k = 0; k < 3; k++) {
+        //This represents the 3x3 inner box
+        for (let l = 0; l < 3; l++) {
+          currentBox.push(arr[3 * i + k][3 * j + l]);
+        }
+      }
+      if (
+        !(
+          currentBox.includes("1") &&
+          currentBox.includes("2") &&
+          currentBox.includes("3") &&
+          currentBox.includes("4") &&
+          currentBox.includes("5") &&
+          currentBox.includes("6") &&
+          currentBox.includes("7") &&
+          currentBox.includes("8") &&
+          currentBox.includes("9")
+        )
+      ) {
+        //Keep an eye on the not. We're here if we fail.
+        return false;
+      }
+    }
+  }
 
   //If we pass all tests without failure, then return true.
   //Until the above are properly implemented, return null
-  return null;
+  return true;
 };
 
 /**
