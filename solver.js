@@ -72,7 +72,7 @@ let isCompletelySolved = function (arr) {
   }
 
   //Check if the rows are complete
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < 9; i++) {
     let currentRow = arr[i];
     if (
       !(
@@ -92,6 +92,28 @@ let isCompletelySolved = function (arr) {
     }
   }
   //Check is the cols are complete
+  for (let i = 0; i < 9; i++) {
+    let currentCol = [];
+    for (let j = 0; j < 9; j++) {
+      currentCol.push(arr[j][i]);
+    }
+    if (
+      !(
+        currentCol.includes("1") &&
+        currentCol.includes("2") &&
+        currentCol.includes("3") &&
+        currentCol.includes("4") &&
+        currentCol.includes("5") &&
+        currentCol.includes("6") &&
+        currentCol.includes("7") &&
+        currentCol.includes("8") &&
+        currentCol.includes("9")
+      )
+    ) {
+      //Keep an eye on the not. We're here if we fail.
+      return false;
+    }
+  }
 
   //Check if the boxes are complete
 
