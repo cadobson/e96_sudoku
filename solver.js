@@ -91,7 +91,7 @@ let isCompletelySolved = function (arr) {
       return false;
     }
   }
-  //Check is the cols are complete
+  //Check if the cols are complete
   for (let i = 0; i < 9; i++) {
     let currentCol = [];
     for (let j = 0; j < 9; j++) {
@@ -151,6 +151,26 @@ let isCompletelySolved = function (arr) {
   //If we pass all tests without failure, then return true.
   //Until the above are properly implemented, return null
   return true;
+};
+
+/**
+ * Given an incomplete array, determine all the possible values of
+ * all of the unsolved boxes
+ * @param {Array} arr
+ */
+let getPossibilities = function (arr) {
+  //First, iterate over the array to determine the empty boxes.
+
+  //Fill this innermost array with all the values not otherwise in that row, col, or box.
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (arr[i][j] === 0) {
+        //Once we've found an empty box, replace the zero with an array.
+        arr[i][j] = [];
+        //TODO: Pick up where I left off
+      }
+    }
+  }
 };
 
 /**
