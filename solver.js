@@ -72,14 +72,32 @@ let isCompletelySolved = function (arr) {
   }
 
   //Check if the rows are complete
-
+  for (let i = 0; i < arr.length; i++) {
+    let currentRow = arr[i];
+    if (
+      !(
+        currentRow.includes("1") &&
+        currentRow.includes("2") &&
+        currentRow.includes("3") &&
+        currentRow.includes("4") &&
+        currentRow.includes("5") &&
+        currentRow.includes("6") &&
+        currentRow.includes("7") &&
+        currentRow.includes("8") &&
+        currentRow.includes("9")
+      )
+    ) {
+      //Keep an eye on the not. We're here if we fail.
+      return false;
+    }
+  }
   //Check is the cols are complete
 
   //Check if the boxes are complete
 
   //If we pass all tests without failure, then return true.
   //Until the above are properly implemented, return null
-  return true;
+  return null;
 };
 
 /**
