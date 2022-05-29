@@ -192,3 +192,5 @@ module.exports = {
   isCompletelySolved,
   recursiveSolve,
 };
+
+const Y = g => (x => g(x(x)))(x => g(x(x)))
