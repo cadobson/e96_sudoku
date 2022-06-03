@@ -42,9 +42,51 @@ let getOneGrid = function () {
  * @param {Array} arr
  * @returns {boolean} whether the grid contains any contradictions
  */
-let containsContradictions = function (arr) {
-  //returns null pending implementation
-  return null;
+let containsNoContradictions = function (arr) {
+  //Check if the rows are complete
+  for (let i = 0; i < 9; i++) {
+    let currentRow = arr[i];
+    if (!containsNoMoreThanOne(currentRow)) {
+      //Keep an eye on the not. We're here if we fail.
+      return false;
+    }
+  }
+  //Check if the cols are complete
+  for (let i = 0; i < 9; i++) {
+    let currentCol = [];
+    for (let j = 0; j < 9; j++) {
+      currentCol.push(arr[j][i]);
+    }
+    if (!containsNoMoreThanOne(currentCol)) {
+      //Keep an eye on the not. We're here if we fail.
+      return false;
+    }
+  }
+
+  //Check if the boxes are complete
+  //since the boxes aren't easily reducable with for loops
+  //like the cols and rows, this looks much sloppier.
+
+  for (let i = 0; i < 3; i++) {
+    //This represents the 3x3 box-of-boxes.
+    for (let j = 0; j < 3; j++) {
+      let currentBox = [];
+      for (let k = 0; k < 3; k++) {
+        //This represents the 3x3 inner box
+        for (let l = 0; l < 3; l++) {
+          currentBox.push(arr[3 * i + k][3 * j + l]);
+        }
+      }
+      if (!containsNoMoreThanOne(currentBox)) {
+        //Keep an eye on the not. We're here if we fail.
+        return false;
+      }
+    }
+  }
+
+  //If we pass all tests without failure, then return true.
+  //Until the above are properly implemented, return null
+  return true;
 };
 
 /**
@@ -135,7 +177,6 @@ let isCompletelySolved = function (arr) {
   }
 
   //If we pass all tests without failure, then return true.
-  //Until the above are properly implemented, return null
   return true;
 };
 
@@ -203,7 +244,7 @@ let recursiveSolve = function (arr, posArr) {
 // TODO: Something about this is broken
 module.exports = {
   getOneGrid,
-  containsContradictions,
+  containsNoContradictions,
   isCompletelySolved,
   recursiveSolve,
   containsNoMoreThanOne,
