@@ -74,19 +74,7 @@ let isCompletelySolved = function (arr) {
   //Check if the rows are complete
   for (let i = 0; i < 9; i++) {
     let currentRow = arr[i];
-    if (
-      !(
-        currentRow.includes("1") &&
-        currentRow.includes("2") &&
-        currentRow.includes("3") &&
-        currentRow.includes("4") &&
-        currentRow.includes("5") &&
-        currentRow.includes("6") &&
-        currentRow.includes("7") &&
-        currentRow.includes("8") &&
-        currentRow.includes("9")
-      )
-    ) {
+    if (!verifyOneOfEach(currentRow)) {
       //Keep an eye on the not. We're here if we fail.
       return false;
     }
@@ -97,19 +85,7 @@ let isCompletelySolved = function (arr) {
     for (let j = 0; j < 9; j++) {
       currentCol.push(arr[j][i]);
     }
-    if (
-      !(
-        currentCol.includes("1") &&
-        currentCol.includes("2") &&
-        currentCol.includes("3") &&
-        currentCol.includes("4") &&
-        currentCol.includes("5") &&
-        currentCol.includes("6") &&
-        currentCol.includes("7") &&
-        currentCol.includes("8") &&
-        currentCol.includes("9")
-      )
-    ) {
+    if (!verifyOneOfEach(currentCol)) {
       //Keep an eye on the not. We're here if we fail.
       return false;
     }
@@ -129,19 +105,7 @@ let isCompletelySolved = function (arr) {
           currentBox.push(arr[3 * i + k][3 * j + l]);
         }
       }
-      if (
-        !(
-          currentBox.includes("1") &&
-          currentBox.includes("2") &&
-          currentBox.includes("3") &&
-          currentBox.includes("4") &&
-          currentBox.includes("5") &&
-          currentBox.includes("6") &&
-          currentBox.includes("7") &&
-          currentBox.includes("8") &&
-          currentBox.includes("9")
-        )
-      ) {
+      if (!verifyOneOfEach(currentBox)) {
         //Keep an eye on the not. We're here if we fail.
         return false;
       }
@@ -150,6 +114,35 @@ let isCompletelySolved = function (arr) {
 
   //If we pass all tests without failure, then return true.
   //Until the above are properly implemented, return null
+  return true;
+};
+
+/**
+ * Helper function for isCompletelySolved(). The parent function
+ * will load up a 1D array of all the elements in a single
+ * row/column/box and pass it to this in order to verify that
+ * the passed-in array contains every number 1 through 9.
+ * @param {Array} arr
+ * @returns if the passed in aray contains every number 1 to 9
+ */
+let verifyOneOfEach = (arr) => {
+  if (
+    !(
+      arr.includes("1") &&
+      arr.includes("2") &&
+      arr.includes("3") &&
+      arr.includes("4") &&
+      arr.includes("5") &&
+      arr.includes("6") &&
+      arr.includes("7") &&
+      arr.includes("8") &&
+      arr.includes("9")
+    )
+  ) {
+    //Keep an eye on the not. We're here if we fail.
+    return false;
+  }
+
   return true;
 };
 
@@ -193,4 +186,4 @@ module.exports = {
   recursiveSolve,
 };
 
-const Y = g => (x => g(x(x)))(x => g(x(x)))
+const Y = (g) => ((x) => g(x(x)))((x) => g(x(x)));
