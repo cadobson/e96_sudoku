@@ -38,11 +38,33 @@ let getOneGrid = function () {
  * number.
  * This does NOT verify if the grid is complete.
  * true if it contains contradictions, false if not.
+ * The structure to this is similar to isCompletelySolved(), but not identical
  * @param {Array} arr
  * @returns {boolean} whether the grid contains any contradictions
  */
 let containsContradictions = function (arr) {
+  //returns null pending implementation
   return null;
+};
+
+/**
+ * Helper function for containsContradictions()
+ * Verifies that a passed in 1D array representing a row/col/box contains either empty cells or
+ * only one of each number. Fails if a passed in array contains more than one of any item.
+ * @param {Array} arr
+ */
+let containsNoMoreThanOne = (arr) => {
+  //For each element in the array, iterate over all following elements in the array.
+  //If a repeat is found for anything other than zero, return false.
+  //If we get to the end with no falsehoods, return true
+  for (let i = 0; i < 9; i++) {
+    for (let j = i + 1; j < 9; j++) {
+      if (arr[i] != 0 && arr[i] === arr[j]) {
+        return false;
+      }
+    }
+  }
+  return true;
 };
 
 /**
@@ -184,6 +206,5 @@ module.exports = {
   containsContradictions,
   isCompletelySolved,
   recursiveSolve,
+  containsNoMoreThanOne,
 };
-
-const Y = (g) => ((x) => g(x(x)))((x) => g(x(x)));
