@@ -235,13 +235,13 @@ let getPossibilities = function (arr) {
  * all values for that square. If a choice causes a contradiction, we exit out and
  */
 let recursiveSolve = function (arr, posArr) {
-  return arr;
+  //returns null until implemented
+  return null;
 };
 
 //console.log(getOneGrid());
 
 // Exports for mocha tests below this line
-// TODO: Something about this is broken
 module.exports = {
   getOneGrid,
   containsNoContradictions,
