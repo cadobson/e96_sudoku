@@ -220,13 +220,54 @@ let getPossibilities = function (arr) {
   //Fill this innermost array with all the values not otherwise in that row, col, or box.
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
-      if (arr[i][j] === 0) {
+      if (arr[i][j] == 0) {
         //Once we've found an empty box, replace the zero with an array.
-        arr[i][j] = [];
-        //TODO: Pick up where I left off
+        arr[i][j] = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        //Now we determine what the box can be by determing what it *cant* be.
+        //Define an array containing every element,
+        //iterate over the current row and box, and remove elements from it
+
+        //First, iterate over the current row.
+        let currentRow = arr[i];
+        for (let k = 0; k < 9; k++) {
+          let locate = arr[i][j].indexOf(currentRow[k])
+          if (locate !== -1) {
+            arr[i][j].splice(locate, 1);
+          }
+        }
+
+        //Second, iterate over the current col
+        let currentCol = [];
+        for (let k = 0; k < 9; k++) {
+          currentCol.push(arr[k][i]);
+        }
+        for (let k = 0; k < 9; k++) {
+          let locate = arr[i][j].indexOf(currentCol[k])
+          if (locate !== -1) {
+            arr[i][j].splice(locate, 1);
+          }
+        }
+
+        //Third, iterate over the current box.
+        let currentBox = [];
+        let boxi = Math.floor(i / 3);
+        let boxj = Math.floor(j / 3);
+        for (let k = 0; k < 3; k++) {
+          //This represents the 3x3 inner box
+          for (let l = 0; l < 3; l++) {
+            currentBox.push(arr[3 * boxi + k][3 * boxj + l]);
+          }
+        }
+        for (let k = 0; k < 9; k++) {
+          let locate = arr[i][j].indexOf(currentBox[k])
+          if (locate !== -1) {
+            arr[i][j].splice(locate, 1);
+          }
+        }
       }
     }
   }
+  return arr;
 };
 
 /**
@@ -239,7 +280,8 @@ let recursiveSolve = function (arr, posArr) {
   return null;
 };
 
-//console.log(getOneGrid());
+let first = getOneGrid()
+console.log(getPossibilities(first))
 
 // Exports for mocha tests below this line
 module.exports = {
