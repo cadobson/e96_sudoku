@@ -215,14 +215,24 @@ let verifyOneOfEach = (arr) => {
  * @param {Array} arr
  */
 let getPossibilities = function (arr) {
+  //before we begin, make a copy of the array to work with
+  let posArr = [];
+  for (let i = 0; i < 9; i++) {
+    let row = [];
+    for (let j = 0; j < 9; j++) {
+      row[j] = arr[i][j]
+    }
+    posArr.push(row)
+  }
+
   //First, iterate over the array to determine the empty boxes.
 
   //Fill this innermost array with all the values not otherwise in that row, col, or box.
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
-      if (arr[i][j] == 0) {
+      if (posArr[i][j] == 0) {
         //Once we've found an empty box, replace the zero with an array.
-        arr[i][j] = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        posArr[i][j] = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
         //Now we determine what the box can be by determing what it *cant* be.
         //Define an array containing every element,
         //iterate over the current row and box, and remove elements from it
@@ -230,9 +240,9 @@ let getPossibilities = function (arr) {
         //First, iterate over the current row.
         let currentRow = arr[i];
         for (let k = 0; k < 9; k++) {
-          let locate = arr[i][j].indexOf(currentRow[k])
+          let locate = posArr[i][j].indexOf(currentRow[k])
           if (locate !== -1) {
-            arr[i][j].splice(locate, 1);
+            posArr[i][j].splice(locate, 1);
           }
         }
 
@@ -242,9 +252,9 @@ let getPossibilities = function (arr) {
           currentCol.push(arr[k][i]);
         }
         for (let k = 0; k < 9; k++) {
-          let locate = arr[i][j].indexOf(currentCol[k])
+          let locate = posArr[i][j].indexOf(currentCol[k])
           if (locate !== -1) {
-            arr[i][j].splice(locate, 1);
+            posArr[i][j].splice(locate, 1);
           }
         }
 
@@ -259,15 +269,26 @@ let getPossibilities = function (arr) {
           }
         }
         for (let k = 0; k < 9; k++) {
-          let locate = arr[i][j].indexOf(currentBox[k])
+          let locate = posArr[i][j].indexOf(currentBox[k])
           if (locate !== -1) {
-            arr[i][j].splice(locate, 1);
+            posArr[i][j].splice(locate, 1);
           }
         }
       }
     }
   }
-  return arr;
+
+  //once we're done, trim all the numbers out of the actual numbers
+  //and replace them with empty arrays.
+
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (!Array.isArray(posArr[i][j])) {
+        posArr[i][j] = [];
+      }
+    }
+  }
+  return posArr;
 };
 
 /**
@@ -281,7 +302,10 @@ let recursiveSolve = function (arr, posArr) {
 };
 
 let first = getOneGrid()
+console.log("Posibilities:")
 console.log(getPossibilities(first))
+console.log("Grid:")
+console.log(first)
 
 // Exports for mocha tests below this line
 module.exports = {
