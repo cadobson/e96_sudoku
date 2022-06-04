@@ -297,8 +297,34 @@ let getPossibilities = function (arr) {
  * all values for that square. If a choice causes a contradiction, we exit out and
  */
 let recursiveSolve = function (arr, posArr) {
-  //returns null until implemented
+  //First, find the first un-attempted box.
+  let attemptI = -1;
+  let attemptJ = -1;
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (arr[i][j] == 0) {
+        attemptI = i;
+        attemptJ = j;
+      }
+      i = 10; j = 10;//escape from for loop
+    }
+  }
+
+  //If we find nothing to attempt, it means we've reached the end of the array.
+  //Verify completion, and return true or false as needed.
+
+
+  //If we do find something to attempt, then we must recursively iterate over all possible
+  //elements that the element could be.
+
+
+
+
+
+  //TODO: Returns null until fully implemented
   return null;
+
+
 };
 
 let first = getOneGrid()
