@@ -305,20 +305,47 @@ let recursiveSolve = function (arr, posArr) {
       if (arr[i][j] == 0) {
         attemptI = i;
         attemptJ = j;
+        i = 10; j = 10;//escape from for loop
       }
-      i = 10; j = 10;//escape from for loop
+
     }
   }
 
   //If we find nothing to attempt, it means we've reached the end of the array.
-  //Verify completion, and return true or false as needed.
+  //Verify completion, and return the correct array or false as needed.
+  if (attemptI === -1 && attemptJ === -1) {
+    if (isCompletelySolved(arr)) {
+      return arr;
+    }
+    return false;
+  }
 
 
   //If we do find something to attempt, then we must recursively iterate over all possible
   //elements that the element could be.
+  for (let k = 0; k < posArr[attemptI][attemptJ].length; k++) {
+    let arrCopy = [];
+    for (let i = 0; i < 9; i++) {
+      let row = [];
+      for (let j = 0; j < 9; j++) {
+        row[j] = arr[i][j]
+      }
+      arrCopy.push(row)
+    }
+    arrCopy[attemptI][attemptJ] = posArr[attemptI][attemptJ][k];
 
 
+    let recursiveResult = recursiveSolve(arrCopy, posArr);
+    if (recursiveResult === false) {
+      //The attempt failed, do nothing.
+    }
+    else {
+      //The attempt succeded, return the solved array;
+      return recursiveResult;
+    }
+  }
 
+  //TODO: Code fails on the last failed k value of the last cell.
 
 
   //TODO: Returns null until fully implemented
@@ -332,6 +359,8 @@ console.log("Posibilities:")
 console.log(getPossibilities(first))
 console.log("Grid:")
 console.log(first)
+let result = recursiveSolve(first, getPossibilities(first));
+console.log(result)
 
 // Exports for mocha tests below this line
 module.exports = {
