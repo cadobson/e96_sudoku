@@ -345,11 +345,11 @@ let recursiveSolve = function (arr, posArr) {
     }
   }
 
-  //TODO: Code fails on the last failed k value of the last cell.
+  //TODO: implement contradiction testing
 
 
-  //TODO: Returns null until fully implemented
-  return null;
+
+  return false;
 
 
 };
