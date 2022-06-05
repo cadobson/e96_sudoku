@@ -249,7 +249,7 @@ let getPossibilities = function (arr) {
         //Second, iterate over the current col
         let currentCol = [];
         for (let k = 0; k < 9; k++) {
-          currentCol.push(arr[k][i]);
+          currentCol.push(arr[k][j]);
         }
         for (let k = 0; k < 9; k++) {
           let locate = posArr[i][j].indexOf(currentCol[k])
