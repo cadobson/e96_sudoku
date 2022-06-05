@@ -37,7 +37,7 @@ let getOneGrid = function () {
  * defined as a single row, column, or block containing two or more of the
  * number.
  * This does NOT verify if the grid is complete.
- * true if it contains contradictions, false if not.
+ * true if it contains no contradictions, false if it does.
  * The structure to this is similar to isCompletelySolved(), but not identical
  * @param {Array} arr
  * @returns {boolean} whether the grid contains any contradictions
@@ -311,6 +311,7 @@ let recursiveSolve = function (arr, posArr) {
     }
   }
 
+
   //If we find nothing to attempt, it means we've reached the end of the array.
   //Verify completion, and return the correct array or false as needed.
   if (attemptI === -1 && attemptJ === -1) {
@@ -332,20 +333,31 @@ let recursiveSolve = function (arr, posArr) {
       }
       arrCopy.push(row)
     }
+    //Introduce a new element.
     arrCopy[attemptI][attemptJ] = posArr[attemptI][attemptJ][k];
+    console.log(`Tried ${arrCopy[attemptI][attemptJ]} at ${attemptI}, ${attemptJ}`)
+
+    //TODO: Contradiction testing here is buggy
+    //Check if the new element causes contradictions. No sense in going down a path
+    //That has no chance of resolution.
+    let attempt = containsNoContradictions(arrCopy);
+    if (attempt) {
+      let recursiveResult = recursiveSolve(arrCopy, posArr);
+      if (recursiveResult === false) {
+        //The attempt failed, do nothing.
+      }
+      else {
+        //The attempt succeded, return the solved array;
+        return recursiveResult;
+      }
+    }
 
 
-    let recursiveResult = recursiveSolve(arrCopy, posArr);
-    if (recursiveResult === false) {
-      //The attempt failed, do nothing.
-    }
-    else {
-      //The attempt succeded, return the solved array;
-      return recursiveResult;
-    }
+
+
   }
 
-  //TODO: implement contradiction testing
+
 
 
 
