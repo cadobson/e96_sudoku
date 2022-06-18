@@ -36,6 +36,7 @@ This code is in desperate need of a refactor. Specific planned improvements incl
 - Remove repetitive code (there's a lot of it!)
 - Fix shallow copy logic. It's currently bulky and can be cleaned up.
 - Compartmentalize code.
+- Write jdocs
 
 I'll probably also refactor this using classes as I progress in my current course of study.
 
